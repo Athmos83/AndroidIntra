@@ -1,4 +1,4 @@
-package com.example.thomasmendez.loginepitech;
+package com.example.thomasmendez.loginintra;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
