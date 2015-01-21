@@ -45,15 +45,13 @@ public class LoginActivity extends Activity{
     public void getConnection(){
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="https://epitech-api.herokuapp.com/login";
-
-
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        System.out.println("Response is: "+ response.substring(0,500));
+                        //System.out.println("Response is: "+ response.substring(0,500));
+                        System.out.println("Response = "+response);
                     }
                 }, new Response.ErrorListener(){
             @Override
@@ -65,10 +63,10 @@ public class LoginActivity extends Activity{
             protected Map<String,String> getParams() {
                 TextView email = (TextView) findViewById(R.id.email);
                 TextView password = (TextView) findViewById(R.id.password);
-                System.out.println("Test : " +email + " => "+password );
+              // System.out.println("Test : " +email.getText().toString() + " => "+password.getText().toString() );
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("login", email.toString());
-                params.put("password", password.toString());
+                params.put("login", email.getText().toString());
+                params.put("password", password.getText().toString());
                 return params;
             }
         };
