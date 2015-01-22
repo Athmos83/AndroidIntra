@@ -1,6 +1,7 @@
 package com.example.thomasmendez.loginintra;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,13 +14,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity{
+public class LoginActivity extends Activity {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -35,16 +39,16 @@ public class LoginActivity extends Activity{
        Button button = (Button)findViewById(R.id.email_sign_in_button);
        button.setOnClickListener(new View.OnClickListener(){
           public void onClick(View v){
-              getConnection();
+              doRequest("https://epitech-api.herokuapp.com/login");
           }
 
        });
 
     }
 
-    public void getConnection(){
+    public void doRequest(String url){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://epitech-api.herokuapp.com/login";
+        //String url ="https://epitech-api.herokuapp.com/login";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>(){
                     @Override
@@ -52,6 +56,15 @@ public class LoginActivity extends Activity{
                         // Display the first 500 characters of the response string.
                         //System.out.println("Response is: "+ response.substring(0,500));
                         System.out.println("Response = "+response);
+                        try {
+                            JSONObject jObj = new JSONObject(response);
+                            String token = jObj.getString("token");
+                            User.setToken(token);
+                            System.out.println(User.getToken());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        setContentView(R.layout.home_display);
                     }
                 }, new Response.ErrorListener(){
             @Override
