@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivity"
+    android:weightSum="1"
+    android:id="@+id/accueil">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_accueil"
+        android:text="@string/acc" />
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/login"
+        android:text="@string/login" />
+
+    <ImageView
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/photo"
+        android:layout_weight="0.22"
+        android:src="@drawable/ic_launcher"
+        />
+
+
+</LinearLayout>
