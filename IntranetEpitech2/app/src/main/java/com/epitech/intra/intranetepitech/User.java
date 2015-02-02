@@ -9,7 +9,16 @@ public class User {
     private static String _token = "";
     private static String _login = "";
     private static Bitmap _photo;
+    private static String _pathPicture;
     private static User ourInstance = new User();
+
+    public static String getPathPicture(){
+        return _pathPicture;
+    }
+    public static void setpathPicture(String path){
+        _pathPicture = path;
+    }
+
     public static User getInstance() {
         return ourInstance;
     }

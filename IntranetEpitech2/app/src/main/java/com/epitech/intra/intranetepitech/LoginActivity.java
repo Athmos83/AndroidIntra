@@ -1,12 +1,11 @@
 package com.epitech.intra.intranetepitech;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,6 +25,8 @@ import java.util.Map;
 
 public class LoginActivity extends Activity {
     String _login = "dedick_r";
+    protected ProgressDialog myProgressDialog;
+    final Handler uiThreadCallback = new Handler();
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -40,17 +41,14 @@ public class LoginActivity extends Activity {
         Button button = (Button)findViewById(R.id.email_sign_in_button);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                doRequest("https://epitech-api.herokuapp.com/login");
+                LoginRequest();
             }
-
         });
-
     }
 
-    public void doRequest(String url){
+    public void LoginRequest(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        //String url ="https://epitech-api.herokuapp.com/login";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://epitech-api.herokuapp.com/login",
                 new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response) {
@@ -63,7 +61,7 @@ public class LoginActivity extends Activity {
                             System.out.println(User.getToken());
                             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                             startActivity(intent);
-                        } catch (JSONException e) {
+                        } catch (JSONException e){
                             e.printStackTrace();
                         }
                     }
@@ -77,18 +75,16 @@ public class LoginActivity extends Activity {
             protected Map<String,String> getParams() {
                 TextView email = (TextView) findViewById(R.id.email);
                 TextView password = (TextView) findViewById(R.id.password);
-                // System.out.println("Test : " +email.getText().toString() + " => "+password.getText().toString() );
                 Map<String, String> params = new HashMap<String, String>();
                 _login = email.getText().toString();
-//                params.put("login", _login);
-                //              params.put("password", password.getText().toString());
+                //params.put("login", _login);
+                //params.put("password", password.getText().toString());
                 _login = "dedick_r";
                 params.put("login", "dedick_r");
                 params.put("password", "vHIRX&(~");
                 return params;
             }
         };
-// Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
 }
