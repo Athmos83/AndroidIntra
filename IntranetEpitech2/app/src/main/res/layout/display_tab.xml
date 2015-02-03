@@ -2,22 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="fill_parent"
     android:id="@+id/LL_Fond"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:visibility="visible">
     <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
-<TableRow
-    android:id="@+id/tableRow1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="5dip" >
-        <TextView android:text="Module" android:id="@+id/tab_module">
-        </TextView>
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <TextView android:text="Grade" android:id="@+id/tab_grade">
-        </TextView>
+            <TextView android:text="Module"
+                android:id="@+id/tab_module"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight="1">
+            </TextView>
 
-</TableRow>
+            <TextView android:text="Grade"
+                android:id="@+id/tab_grade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="right">
+
+            </TextView>
+
+        </TableRow>
     </TableLayout>
 </LinearLayout>
