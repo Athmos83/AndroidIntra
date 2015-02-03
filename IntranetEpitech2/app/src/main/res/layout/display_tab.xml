@@ -3,7 +3,8 @@
     android:layout_width="match_parent" android:layout_height="fill_parent"
     android:id="@+id/LL_Fond"
     android:weightSum="1"
-    android:visibility="visible">
+    android:visibility="visible"
+    android:background="#ff2fb5ff">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
