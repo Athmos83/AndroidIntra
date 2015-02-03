@@ -19,7 +19,8 @@
         android:layout_height="54dp" android:hint="@string/prompt_login"
         android:maxLines="1"
         android:singleLine="true"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:textColor="#ffffffff" />
 
     <EditText android:id="@+id/password" android:layout_width="match_parent"
         android:layout_height="54dp" android:hint="@string/prompt_password"
@@ -27,15 +28,16 @@
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionUnspecified" android:inputType="textPassword"
         android:maxLines="1" android:singleLine="true"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:textColor="#ffffffff" />
 
     <Button android:id="@+id/email_sign_in_button" style="@android:style/Animation"
-        android:layout_width="323dp" android:layout_height="wrap_content"
+        android:layout_width="218dp" android:layout_height="wrap_content"
         android:layout_marginTop="16dp" android:text="@string/action_sign_in"
         android:textStyle="bold"
         android:theme="@style/Base.TextAppearance.AppCompat"
         android:background="#ff2c8dcd"
-        android:layout_weight="0.12" />
+        android:textColor="#ffffffff" />
 
     <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
         android:layout_height="69dp">
