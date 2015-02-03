@@ -66,10 +66,17 @@ public class MenuActivity extends ActionBarActivity
                 mTitle = getResources().getStringArray(R.array.menu_class)[number - 1];
                 break;
             case 2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new MessagesActivity.PlaceholderFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new PlanningActivity.PlaceholderFragment()).commit();
                 mTitle = getResources().getStringArray(R.array.menu_class)[number - 1];
                 break;
-
+            case 3:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new TokenActivity.PlaceholderFragment()).commit();
+                mTitle = getResources().getStringArray(R.array.menu_class)[number - 1];
+                break;
+            case 4:
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, new GradeActivity.PlaceholderFragment()).commit();
+                mTitle = getResources().getStringArray(R.array.menu_class)[number - 1];
+                break;
             default:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new ProfilActivity.PlaceholderFragment()).commit();
                 mTitle = getResources().getStringArray(R.array.menu_class)[number - 1];

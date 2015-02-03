@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="fill_parent"
+    android:id="@+id/LL_Fond"
+    android:weightSum="1">
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+<TableRow
+    android:id="@+id/tableRow1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dip" >
+        <TextView android:text="Module" android:id="@+id/tab_module">
+        </TextView>
+
+        <TextView android:text="Grade" android:id="@+id/tab_grade">
+        </TextView>
+
+</TableRow>
+    </TableLayout>
+</LinearLayout>

@@ -17,16 +17,17 @@
 
     <string-array name="menu_class">
         <item>Profil</item>
-        <item>Messages</item>
         <item>Planning</item>
-        <item>Notes</item>
-        <item>Projets</item>
-        <item>Susies</item>
+        <item>Token</item>
+        <item>Grade</item>
     </string-array>
 
     <string name="title_activity_profil">Profil</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_messages">MessagesActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_planning">PlanningActivity</string>
+    <string name="title_activity_token">TokenActivity</string>
+    <string name="title_activity_grade">GradeActivity</string>
 
 </resources>

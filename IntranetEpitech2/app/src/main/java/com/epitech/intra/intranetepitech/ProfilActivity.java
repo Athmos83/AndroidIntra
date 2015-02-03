@@ -65,8 +65,9 @@ public class ProfilActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_profil, container, false);
             final ImageView photo = (ImageView) rootView.findViewById(R.id.photo);
             final TextView log = (TextView) rootView.findViewById(R.id.log);
+            final TextView credit = (TextView) rootView.findViewById(R.id.credit);
             getPictureUser(photo);
-            getInfoUser(log);
+            getInfoUser(log, credit);
             return rootView;
         }
 
@@ -74,7 +75,7 @@ public class ProfilActivity extends ActionBarActivity {
 
         }
 
-        public void getInfoUser(final TextView logView){
+        public void getInfoUser(final TextView logView, final TextView credit){
             RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
             StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://epitech-api.herokuapp.com/infos",
                     new Response.Listener<String>(){
@@ -84,6 +85,7 @@ public class ProfilActivity extends ActionBarActivity {
                                 JSONObject jObj = new JSONObject(response);
                                 JSONObject log = jObj.getJSONObject("current");
                                 logView.setText("Le temps de log est de :"+log.getString("active_log"));
+                                credit.setText("Tu as "+log.getString("achieved")+" crédits. Il en faut "+log.getString("credits_obj")+" crédits. Tu peux en obtenir encore "+log.getString("inprogress"));
                             } catch (JSONException e){
                                 e.printStackTrace();
                             }
