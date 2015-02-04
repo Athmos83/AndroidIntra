@@ -143,7 +143,7 @@ public class PlanningActivity extends ActionBarActivity {
                 Object element = itr.next();
                 System.out.println(((BeanPlanning) element).get_acti_title() + " ");
                 String date = ((BeanPlanning)element).get_start();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm:ss");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
                 SimpleDateFormat dateDay = new SimpleDateFormat("dd-MM-yyyy");
                 SimpleDateFormat dateHour = new SimpleDateFormat("hh:mm::ss");
                 Date convertedDate = new Date();
@@ -156,7 +156,7 @@ public class PlanningActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
                 System.out.println(convertedDate);
-                //System.out.println(Calendar.getInstance().getTime());
+                System.out.println(Calendar.getInstance().getTime());
             }
         }
 
