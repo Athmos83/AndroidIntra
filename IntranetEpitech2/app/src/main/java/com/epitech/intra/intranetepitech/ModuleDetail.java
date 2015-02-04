@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.TextView;
 
 
 public class ModuleDetail extends ActionBarActivity {
@@ -61,6 +62,10 @@ public class ModuleDetail extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_module_detail, container, false);
             System.out.println("User get acti => "+User.getBeanPlanning().get_acti_title());
+            TextView name = (TextView)rootView.findViewById(R.id.name);
+            TextView date = (TextView)rootView.findViewById(R.id.date);
+            name.setText(User.getBeanPlanning().get_acti_title());
+            date.setText(User.getBeanPlanning().get_date());
             return rootView;
         }
     }
