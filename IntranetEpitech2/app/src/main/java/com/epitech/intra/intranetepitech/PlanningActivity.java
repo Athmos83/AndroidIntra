@@ -11,6 +11,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import java.text.ParseException;
+import java.util.Date;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
 
 public class PlanningActivity extends ActionBarActivity {
 
@@ -60,7 +80,86 @@ public class PlanningActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_planning, container, false);
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            String start = format1.format(c.getTime());
+            c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+            String end = format1.format(c.getTime());
+            System.out.println("Date début => " + start + " Date fin => " + end);
+            getCalendar(start, end);
             return rootView;
         }
+
+        public void getCalendar(String start, String end){
+            RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+            String url = "https://epitech-api.herokuapp.com/planning?token="+User.getToken()+"&start="+start+"&end="+end;
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>(){
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                List<BeanPlanning> planning = new ArrayList<BeanPlanning>();
+                                JSONArray module = new JSONArray(response);
+                                for (int i=0; i<module.length(); i++) {
+                                    BeanPlanning plan = new BeanPlanning();
+                                    JSONObject actor = module.getJSONObject(i);
+                                    plan.set_acti_title(actor.getString("acti_title"));
+                                    plan.set_moduleRegister(actor.getString("module_registered"));
+                                    plan.set_start(actor.getString("start"));
+                                    plan.set_moduleAvailable(actor.getString("module_available"));
+                                    plan.set_end(actor.getString("end"));
+                                    plan.set_titleModule(actor.getString("titlemodule"));
+                                    plan.set_codeModule(actor.getString("codemodule"));
+                                    plan.set_semester(actor.getString("semester"));
+                                    plan.set_allowToken(actor.getString("allow_token"));
+                                    plan.set_time(actor.getString("nb_hours"));
+                                    plan.set_codeActi(actor.getString("codeacti"));
+                                    plan.set_codeEvent(actor.getString("codeevent"));
+                                    plan.set_codeInstance(actor.getString("codeinstance"));
+                                    plan.set_registerStudent(actor.getString("register_student"));
+
+                                    planning.add(plan);
+                                    displayList(planning);
+                                    //                     System.out.println(plan.get_acti_title());
+                                }
+                                //setAdapter(listGrade);
+                            } catch (JSONException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener(){
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println("That didn't work!");
+                }
+            });
+            queue.add(stringRequest);
+        }
+
+        public void displayList(List<BeanPlanning> list){
+            Iterator itr = list.iterator();
+            while(itr.hasNext()) {
+                Object element = itr.next();
+                System.out.println(((BeanPlanning) element).get_acti_title() + " ");
+                String date = ((BeanPlanning)element).get_start();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy hh:mm:ss");
+                SimpleDateFormat dateDay = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat dateHour = new SimpleDateFormat("hh:mm::ss");
+                Date convertedDate = new Date();
+                try {
+                    convertedDate = dateFormat.parse(date);
+                    String daten = convertedDate.toString();
+                    convertedDate = dateDay.parse(daten);
+                } catch (ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                System.out.println(convertedDate);
+                //System.out.println(Calendar.getInstance().getTime());
+            }
+        }
+
+
     }
 }

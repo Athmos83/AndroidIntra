@@ -24,7 +24,6 @@ import java.util.Map;
 
 
 public class LoginActivity extends Activity {
-    String _login = "dedick_r";
     protected ProgressDialog myProgressDialog;
     final Handler uiThreadCallback = new Handler();
     /**
@@ -57,8 +56,9 @@ public class LoginActivity extends Activity {
                             JSONObject jObj = new JSONObject(response);
                             String token = jObj.getString("token");
                             User.setToken(token);
-                            User.setLogin(_login);
-                            System.out.println(User.getToken());
+                            TextView email = (TextView) findViewById(R.id.email);
+                            User.setLogin(email.getText().toString());
+                            //System.out.println(User.getToken());
                             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                             startActivity(intent);
                         } catch (JSONException e){
@@ -76,12 +76,8 @@ public class LoginActivity extends Activity {
                 TextView email = (TextView) findViewById(R.id.email);
                 TextView password = (TextView) findViewById(R.id.password);
                 Map<String, String> params = new HashMap<String, String>();
-                _login = email.getText().toString();
-                //params.put("login", _login);
-                //params.put("password", password.getText().toString());
-                _login = "dedick_r";
-                params.put("login", "dedick_r");
-                params.put("password", "vHIRX&(~");
+                params.put("login", email.getText().toString());
+                params.put("password", password.getText().toString());
                 return params;
             }
         };
