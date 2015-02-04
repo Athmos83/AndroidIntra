@@ -1,5 +1,7 @@
 package com.epitech.intra.intranetepitech;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -118,12 +124,11 @@ public class PlanningActivity extends ActionBarActivity {
                                     plan.set_codeEvent(actor.getString("codeevent"));
                                     plan.set_codeInstance(actor.getString("codeinstance"));
                                     plan.set_registerStudent(actor.getString("register_student"));
-
-                                    planning.add(plan);
-                                    displayList(planning);
-                                    //                     System.out.println(plan.get_acti_title());
+                                    plan.set_date(changeFormatDate(actor.getString("start")));
+                                    if (plan.get_moduleRegister().equals("true") && (plan.get_moduleAvailable().equals("true")))
+                                        planning.add(plan);
                                 }
-                                //setAdapter(listGrade);
+                                setAdapter(planning);
                             } catch (JSONException e){
                                 e.printStackTrace();
                             }
@@ -137,26 +142,58 @@ public class PlanningActivity extends ActionBarActivity {
             queue.add(stringRequest);
         }
 
+        public void setAdapter(List<BeanPlanning> list){
+            ListView listview = (ListView)getView().findViewById(R.id.planning);
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ListView listview = (ListView)getView().findViewById(R.id.planning);
+                    BeanPlanning test = (BeanPlanning)listview.getItemAtPosition(position);
+                    System.out.println(test.get_titleModule());
+
+                    Bundle data = new Bundle();
+                    //data.putString("module", test);
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    Fragment mFrag = new ModuleDetail.PlaceholderFragment();
+                    mFrag.setArguments(data);
+                    fragmentTransaction.replace(R.id.container , new ModuleDetail.PlaceholderFragment());
+                    User.setBeanPlanning(test);
+                    fragmentTransaction.commit();
+                }
+            });
+
+             ArrayAdapter<BeanPlanning> adapter = new PlanningAdapter(getActivity().getApplicationContext(), R.layout.display_module, list);
+            listview.setAdapter(adapter);
+        }
+
+        public String changeFormatDate(String date){
+            String currentData="";
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+            SimpleDateFormat dateDay = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat dateHour = new SimpleDateFormat("hh:mm::ss");
+            Date convertedDate = new Date();
+            try {
+                convertedDate = dateFormat.parse(date);
+                String daten = convertedDate.toString();
+                currentData = dateDay.format(convertedDate);
+               return currentData;
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return currentData;
+        }
+
         public void displayList(List<BeanPlanning> list){
             Iterator itr = list.iterator();
             while(itr.hasNext()) {
                 Object element = itr.next();
                 System.out.println(((BeanPlanning) element).get_acti_title() + " ");
                 String date = ((BeanPlanning)element).get_start();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-                SimpleDateFormat dateDay = new SimpleDateFormat("dd-MM-yyyy");
-                SimpleDateFormat dateHour = new SimpleDateFormat("hh:mm::ss");
-                Date convertedDate = new Date();
-                try {
-                    convertedDate = dateFormat.parse(date);
-                    String daten = convertedDate.toString();
-                    convertedDate = dateDay.parse(daten);
-                } catch (ParseException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                System.out.println(convertedDate);
-                System.out.println(Calendar.getInstance().getTime());
+
+                //System.out.println(convertedDate);
+               // System.out.println(Calendar.getInstance().getTime());
             }
         }
 

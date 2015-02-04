@@ -10,6 +10,7 @@ public class User {
     private static String _login = "";
     private static Bitmap _photo;
     private static String _pathPicture;
+    private static BeanPlanning _module;
     private static User ourInstance = new User();
 
     public static String getPathPicture(){
@@ -32,6 +33,12 @@ public class User {
     public static void deleteUser(){
         _token = "";
         _login = "";
+    }
+    public static void setBeanPlanning(BeanPlanning module){
+        _module = module;
+    }
+    public static BeanPlanning getBeanPlanning(){
+        return _module;
     }
     public static String getToken(){
         return _token;

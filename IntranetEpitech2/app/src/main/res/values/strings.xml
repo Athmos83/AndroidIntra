@@ -29,5 +29,6 @@
     <string name="title_activity_planning">PlanningActivity</string>
     <string name="title_activity_token">TokenActivity</string>
     <string name="title_activity_grade">GradeActivity</string>
+    <string name="title_activity_module_detail">ModuleDetail</string>
 
 </resources>

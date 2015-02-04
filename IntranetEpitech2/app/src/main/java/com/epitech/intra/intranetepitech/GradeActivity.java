@@ -110,7 +110,7 @@ public class GradeActivity extends ActionBarActivity {
                                     JSONObject actor = module.getJSONObject(i);
                                     String name = actor.getString("title");
                                     String grade = actor.getString("grade");
-                                    listGrade.put(name,grade);
+                                    listGrade.put(name, grade);
                                     System.out.println(name);
                                 }
                                 setAdapter(listGrade);

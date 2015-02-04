@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView android:text="Date"
+                android:id="@+id/plan_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </TextView>
+        </TableRow>
+        <TableRow>
+
+            <TextView android:text="Titre"
+                android:id="@+id/plan_titre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </TableRow>
+        <TableRow>
+            <TextView android:text="Horaire"
+                android:id="@+id/plan_horaire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </TextView>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

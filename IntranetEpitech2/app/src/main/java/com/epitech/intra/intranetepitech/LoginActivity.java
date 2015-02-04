@@ -24,8 +24,6 @@ import java.util.Map;
 
 
 public class LoginActivity extends Activity {
-    protected ProgressDialog myProgressDialog;
-    final Handler uiThreadCallback = new Handler();
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.

@@ -7,6 +7,7 @@ public class BeanPlanning {
     String _start;
     String _end;
     String _titleModule;
+    String _date;
     String _codeModule;
     String _semester;
     String _allowToken;
@@ -18,6 +19,16 @@ public class BeanPlanning {
     String _registerStudent;
     String _moduleAvailable;
     String _moduleRegister;
+
+    public String get_scholarYear() {
+        return _scholarYear;
+    }
+
+    public void set_scholarYear(String _scholarYear) {
+        this._scholarYear = _scholarYear;
+    }
+
+    String _scholarYear;
 
     public BeanPlanning(){}
 
@@ -131,5 +142,13 @@ public class BeanPlanning {
 
     public void set_moduleRegister(String _moduleRegister) {
         this._moduleRegister = _moduleRegister;
+    }
+
+    public void set_date(String start) {
+        _date = start;
+    }
+
+    public String get_date(){
+        return _date;
     }
 }
