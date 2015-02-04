@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -78,7 +79,8 @@ public class PlanningActivity extends ActionBarActivity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
-
+        String start;
+        String end;
         public PlaceholderFragment() {
         }
 
@@ -89,13 +91,13 @@ public class PlanningActivity extends ActionBarActivity {
             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
             Calendar c = Calendar.getInstance();
             c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            String start = format1.format(c.getTime());
+            start = format1.format(c.getTime());
             c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-            String end = format1.format(c.getTime());
-            System.out.println("Date début => " + start + " Date fin => " + end);
+            end = format1.format(c.getTime());
             getCalendar(start, end);
             return rootView;
         }
+
 
         public void getCalendar(String start, String end){
             RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -148,16 +150,12 @@ public class PlanningActivity extends ActionBarActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ListView listview = (ListView)getView().findViewById(R.id.planning);
                     BeanPlanning test = (BeanPlanning)listview.getItemAtPosition(position);
-                    System.out.println(test.get_titleModule());
-
                     Bundle data = new Bundle();
-                    //data.putString("module", test);
-
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Fragment mFrag = new ModuleDetail.PlaceholderFragment();
                     mFrag.setArguments(data);
-                    fragmentTransaction.replace(R.id.container , new ModuleDetail.PlaceholderFragment());
+                    fragmentTransaction.replace(R.id.container, new ModuleDetail.PlaceholderFragment());
                     User.setBeanPlanning(test);
                     fragmentTransaction.commit();
                 }
@@ -191,9 +189,6 @@ public class PlanningActivity extends ActionBarActivity {
                 Object element = itr.next();
                 System.out.println(((BeanPlanning) element).get_acti_title() + " ");
                 String date = ((BeanPlanning)element).get_start();
-
-                //System.out.println(convertedDate);
-               // System.out.println(Calendar.getInstance().getTime());
             }
         }
 

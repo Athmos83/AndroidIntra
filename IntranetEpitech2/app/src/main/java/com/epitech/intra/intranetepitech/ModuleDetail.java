@@ -61,11 +61,17 @@ public class ModuleDetail extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_module_detail, container, false);
-            System.out.println("User get acti => "+User.getBeanPlanning().get_acti_title());
-            TextView name = (TextView)rootView.findViewById(R.id.name);
-            TextView date = (TextView)rootView.findViewById(R.id.date);
+                     TextView name = (TextView)rootView.findViewById(R.id.name);
+            //TextView date = (TextView)rootView.findViewById(R.id.date);
+            TextView title = (TextView)rootView.findViewById(R.id.title);
+            TextView start = (TextView)rootView.findViewById(R.id.start);
+            TextView end = (TextView)rootView.findViewById(R.id.end);
+            title.setText(User.getBeanPlanning().get_titleModule());
             name.setText(User.getBeanPlanning().get_acti_title());
-            date.setText(User.getBeanPlanning().get_date());
+            //date.setText(User.getBeanPlanning().get_date());
+            start.setText(User.getBeanPlanning().get_start());
+            end.setText(User.getBeanPlanning().get_end());
+
             return rootView;
         }
     }
