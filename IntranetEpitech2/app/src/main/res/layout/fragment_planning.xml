@@ -7,20 +7,6 @@
     tools:context="com.epitech.intra.intranetepitech.PlanningActivity$PlaceholderFragment"
     android:background="#ff2fb5ff">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonprev"
-        android:onClick="ButtonClickPrev()" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonnext"
-        android:onClick="ButtonClickNext()"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/planning"
-        android:layout_alignEnd="@+id/planning" />
-
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

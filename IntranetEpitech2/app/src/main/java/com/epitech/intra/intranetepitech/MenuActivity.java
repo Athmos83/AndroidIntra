@@ -50,8 +50,6 @@ public class MenuActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        System.out.println("ici");
-        // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -70,10 +68,6 @@ public class MenuActivity extends ActionBarActivity
                 mTitle = getResources().getStringArray(R.array.menu_class)[number - 1];
                 break;
             case 3:
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new TokenActivity.PlaceholderFragment()).commit();
-                mTitle = getResources().getStringArray(R.array.menu_class)[number - 1];
-                break;
-            case 4:
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new GradeActivity.PlaceholderFragment()).commit();
                 mTitle = getResources().getStringArray(R.array.menu_class)[number - 1];
                 break;
@@ -85,7 +79,6 @@ public class MenuActivity extends ActionBarActivity
     }
 
     public void restoreActionBar() {
-        System.out.println("la");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);

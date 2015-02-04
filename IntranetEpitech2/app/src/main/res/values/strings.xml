@@ -18,7 +18,6 @@
     <string-array name="menu_class">
         <item>Profil</item>
         <item>Planning</item>
-        <item>Token</item>
         <item>Grade</item>
     </string-array>
 

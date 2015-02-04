@@ -33,10 +33,7 @@
             android:name=".PlanningActivity"
             android:label="@string/title_activity_planning" >
         </activity>
-        <activity
-            android:name=".TokenActivity"
-            android:label="@string/title_activity_token" >
-        </activity>
+
         <activity
             android:name=".GradeActivity"
             android:label="@string/title_activity_grade" >
